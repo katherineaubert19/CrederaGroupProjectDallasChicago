@@ -13,8 +13,16 @@ export const HomePageComponent = () => {
 
   const fetchStories = async () => {
     try {
-      const data = HotSauces;
-      const stortedSauces = data.HotSauce.sort((story, nextStory) => (story.points < nextStory.points ? 1 : -1));
+      fetch('https://localhost:5001/Products')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+// we don't have to do this now, maybe as an add on
+      });
+      //const data = HotSauces;
+      const stortedSauces = data.sort((story, nextStory) => (story.points < nextStory.points ? 1 : -1));
       console.log(stortedSauces)
       //setAllStories(data);
       //setStories(data);
