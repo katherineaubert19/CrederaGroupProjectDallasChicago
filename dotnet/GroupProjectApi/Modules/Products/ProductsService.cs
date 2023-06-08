@@ -14,6 +14,7 @@ namespace GroupProjectApi.Modules.Products
     {
         //Parsing JSON file 
         private readonly string _Hotsauce = "Modules/Models/Hotsauce.json";
+       
         //public class ReadAndParseJSONWithNewtonSoftJson
         //{
         //    //private readonly string _Hotsauce;
@@ -38,6 +39,17 @@ namespace GroupProjectApi.Modules.Products
             public List<ProductDto> Hotsauces {get; set;}
         }
         
+        //Return a product from the hot sauce file
+        public ProductDto FindId(int productId) 
+        {
+            List<ProductDto> list = UseUserDefindObjectWithNewtonsoftJson();
+
+            return list.FirstOrDefault(i => i.ProductId == productId);
+        }
+
+    }
+}
+        
         // var listofprod = UseUserDefindObjectWithNewtonsoftJson(ReadAndParseJSONWithNewtonSoftJson( _Hotsauce));
 //listofprod is helpful for search, use it in a search function 
 
@@ -56,5 +68,3 @@ namespace GroupProjectApi.Modules.Products
         // {
         //     return _productRepo.GetProductById(productId)?.ToProductDto();
         // }
-    }
-}

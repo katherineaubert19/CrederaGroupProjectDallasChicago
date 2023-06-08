@@ -14,6 +14,7 @@ namespace GroupProjectApi.Modules.Products
     {
         private readonly ILogger<ProductsController> _logger;
         private readonly ProductsService _productService;
+        // private var products = _productService.UseUserDefindObjectWithNewtonsoftJson();
 
         public ProductsController(ILogger<ProductsController> logger, ProductsService productService)
         {
@@ -37,8 +38,16 @@ namespace GroupProjectApi.Modules.Products
 
         [HttpGet("{productId}")]
         public ActionResult<ProductDto> GetProductById(int productId) {
- 
-            return new ProductDto();
+            var prod = _productService.FindId(productId);
+            return prod;
+            //iterate through products
+            //if product id mataches the product return that product Dto 
+        //     var prod = _productService.GetProductById(productId);
+        //     if (product == null)
+        //    {
+        //        return this.NotFound();
+        //    }
+        //    return this.Ok(product);
 
         }
         //{
