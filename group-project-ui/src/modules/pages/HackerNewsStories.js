@@ -17,9 +17,9 @@ const HackerNewsStories = ({stories = []}) => {
   return (    
       <div className="stories-wrapper">
         {stories &&
-          stories.map(({ ProductID,Name,Description,Price,Quantity }) => (
-            <div className='stories-list' key={ProductID}>
-              <Button id = "button" onClick={() => displayPopUp()}> {Name} - <b>{Description}</b> (${Price}ea) - {Quantity} Remaining</Button>
+          stories.map(({ productId,name,description,price,quantity}) => (
+            <div className='stories-list' key={productId}>
+              <Button id = "button" onClick={() => displayPopUp()}> {name} - <b>{description}</b> (${price}ea) - {quantity} Remaining</Button>
               
             </div>
                              
