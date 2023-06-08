@@ -13,38 +13,43 @@ export const HomePageComponent = () => {
 
   const fetchStories = async () => {
     try {
-      fetch('https://localhost:5001/Products')
+
+      // let data1;
+
+      // const res = await fetch('https://localhost:5001/Products')
+    
+      // obj = await res.json();
+    
+      // console.log(obj)
+      let data1;
+      await fetch('https://localhost:5001/Products')
       .then(response => response.json())
       .then(data => {
+        data1 = data;
         console.log(data);
       })
       .catch(error => {
 // we don't have to do this now, maybe as an add on
       });
-      //const data = HotSauces;
-      const stortedSauces = data.sort((story, nextStory) => (story.points < nextStory.points ? 1 : -1));
-      console.log(stortedSauces)
+      console.log(data1)
+      const sortedSauces = data1.sort((story, nextStory) => (story.points < nextStory.points ? 1 : -1));
       //setAllStories(data);
       //setStories(data);
-      setAllStories(stortedSauces);
-      setStories(stortedSauces);
-
-      setError(null);
-      console.log(data);
-    } catch (err) {
-      setError(err.message);
-      setStories(null);
+      setAllStories(sortedSauces);
+      setStories(sortedSauces);
+      console.log(sortedSauces);
     } finally {
       setLoading(false);
     }
   };
-
+  console.log(allStories)
   const updateKeyword = (keyword) => {
     const filtered = allStories.filter(story => {
-     return `${story.Name.toLowerCase()} ${story.Description.toLowerCase()}`.includes(keyword.toLowerCase());
+     return `${story.name.toLowerCase()} ${story.description.toLowerCase()}`.includes(keyword.toLowerCase());
     })
     setKeyword(keyword);
     setStories(filtered);
+    console.log(filtered);
  }
 
   useEffect(() => {
