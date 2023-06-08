@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GroupProjectApi.Modules.Products.Models;
+using GroupProjectApi.Modules.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,29 +21,35 @@ namespace GroupProjectApi.Modules.Products
             _productService = productService;
         }
 
-        [HttpGet("Products")]
+        [HttpGet("")]
         public ActionResult<IEnumerable<ProductDto>> GetProducts()
         {
-            _logger.LogInformation("Retrieving all products");
-            var products = _productService.GetAllProducts(); // Create GetAllProducts class
-            if (products == null || !products.Any())
-            {
-                return this.NotFound();
-            }
-            return this.Ok(products);
+            var products = _productService.UseUserDefindObjectWithNewtonsoftJson();
+            return products;
+            //_logger.LogInformation("Retrieving all products");
+            //var products = _productService.GetAllProducts(); // Create GetAllProducts class
+            //if (products == null || !products.Any())
+            //{
+            //    return this.NotFound();
+            //}
+            //return this.Ok(products);
         }
-        
-        [HttpGet("Products/{productId}")]
-        public ActionResult<ProductDto> GetProductById(int productId)
-        {
-            _logger.LogInformation($"Retrieving product (productId: {productId})");
-            var product = _productService.GetProduct(productId);
-            if (product == null)
-            {
-                return this.NotFound();
-            }
-            return this.Ok(product);
+
+        [HttpGet("{productId}")]
+        public ActionResult<ProductDto> GetProductById(int productId) {
+ 
+            return new ProductDto();
+
         }
+        //{
+        //    _logger.LogInformation($"Retrieving product (productId: {productId})");
+        //    var product = _productService.GetProduct(productId);
+        //    if (product == null)
+        //    {
+        //        return this.NotFound();
+        //    }
+        //    return this.Ok(product);
+        //}
 
     }
         

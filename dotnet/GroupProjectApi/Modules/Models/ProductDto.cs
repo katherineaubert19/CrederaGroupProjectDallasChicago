@@ -1,6 +1,6 @@
 using System;
 
-namespace GroupProjectApi.Modules.Products.Models
+namespace GroupProjectApi.Modules.Models
 {
     public class ProductDto
     {
@@ -10,7 +10,7 @@ namespace GroupProjectApi.Modules.Products.Models
         public decimal Price { get; set; }
         public int Quantity { get; set; }
     }
-    
+
 }
 
 

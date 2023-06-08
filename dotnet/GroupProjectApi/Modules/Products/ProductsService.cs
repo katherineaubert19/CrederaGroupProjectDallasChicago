@@ -1,9 +1,11 @@
-﻿using GroupProjectApi.Modules.Products.Models;
-using GroupProjectApi.Modules.Common.Attributes;
+﻿using GroupProjectApi.Modules.Common.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
+using GroupProjectApi.Modules.Models;
 
 namespace GroupProjectApi.Modules.Products
 {
@@ -11,22 +13,29 @@ namespace GroupProjectApi.Modules.Products
     public class ProductsService
     {
         //Parsing JSON file 
-        public class ReadAndParseJSONWithNewtonSoftJson
-        {
-            private readonly string _Hotsauce;
-            public ReadAndParseJSONWithNewtonSoftJson(string jsonfilepath)
-            {
-                _Hotsauce = jsonfilepath;
-            }
-        }
+        private readonly string _Hotsauce = "Modules/Models/Hotsauce.json";
+        //public class ReadAndParseJSONWithNewtonSoftJson
+        //{
+        //    //private readonly string _Hotsauce;
+        //    public ReadAndParseJSONWithNewtonSoftJson(string jsonfilepath,)
+        //    {
+        //        _Hotsauce = jsonfilepath;
+        //    }
+        //}
 
         //Return a list of products from the hot sauce file
         public List<ProductDto> UseUserDefindObjectWithNewtonsoftJson()
         {
-            using StreamReader reader = new(_Hotsauce);
-            var json = reader.ReadToEnd();
-            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(json);
-            return products;
+            using StreamReader reader = new StreamReader(_Hotsauce);
+            string json = reader.ReadToEnd();
+
+            List<ProductDto> products = JsonConvert.DeserializeObject<JsonWrapper>(json)?.Hotsauces;
+            return products ?? new List<ProductDto>();
+        }
+
+        public class JsonWrapper
+        {
+            public List<ProductDto> Hotsauces {get; set;}
         }
         
         // var listofprod = UseUserDefindObjectWithNewtonsoftJson(ReadAndParseJSONWithNewtonSoftJson( _Hotsauce));

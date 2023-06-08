@@ -1,5 +1,5 @@
-﻿using GroupProjectApi.Modules.Carts.Models;
-using GroupProjectApi.Modules.Common.Entities;
+﻿using GroupProjectApi.Modules.Common.Entities;
+using GroupProjectApi.Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
