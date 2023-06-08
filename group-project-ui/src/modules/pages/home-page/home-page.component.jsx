@@ -1,36 +1,59 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { retrieveCart } from '../../cart/retrieve-cart/retrieve-cart.slice';
-import { RequestStatus } from '../../common/redux/redux.constants';
-import { Button } from '@material-ui/core';
+import { useState } from 'react';
+import HackerNewsStories from '../HackerNewsStories';
+import SearchBar from '../SearchBar';
+import HotSauces from '../Hotsauce.json'
 
 export const HomePageComponent = () => {
+  const [stories, setStories] = useState([]);
+  const [allStories, setAllStories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [keyword, setKeyword] = useState('');
 
-  const dispatch = useDispatch();
-  const retrieveCartState = useSelector(state => state.cart.retrieveCart);
+  const fetchStories = async () => {
+    try {
+      const data = HotSauces;
+      const stortedSauces = data.HotSauce.sort((story, nextStory) => (story.points < nextStory.points ? 1 : -1));
+      console.log(stortedSauces)
+      //setAllStories(data);
+      //setStories(data);
+      setAllStories(stortedSauces);
+      setStories(stortedSauces);
+
+      setError(null);
+      console.log(data);
+    } catch (err) {
+      setError(err.message);
+      setStories(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateKeyword = (keyword) => {
+    const filtered = allStories.filter(story => {
+     return `${story.Name.toLowerCase()} ${story.Description.toLowerCase()}`.includes(keyword.toLowerCase());
+    })
+    setKeyword(keyword);
+    setStories(filtered);
+ }
 
   useEffect(() => {
-    // Example purposes only - should likely move retrieveCart call to a new 'cart' component
-    dispatch(retrieveCart(1));
+    fetchStories();
   }, []);
 
   return (
-    <div>
-      Home Page
-      {retrieveCartState.status === RequestStatus.LOADING
-        ? (<div data-testid='loading-spinner'>Loading...</div>)
-        : (
-          <div>
-            <Button onClick={() => dispatch(retrieveCart(1))}>Retrieve Cart</Button>
-            <div>(Current CartId: {retrieveCartState?.response?.cartId})</div>
-            <div>
-              {JSON.stringify(retrieveCartState?.response)}
-            </div>
-          </div>
-        )
-      }
+    <> { /* React fragment */}
+    <div className="wrapper">
+      <h2>HOT SAUCE Directory</h2>
+      {loading && <div>HackerNews frontpage stories loading...</div>}
+      {error && <div>{`Problem fetching the HackeNews Stories - ${error}`}</div>}
+      <SearchBar keyword={keyword} onChange={updateKeyword}/>
+      <HackerNewsStories stories={stories} />
     </div>
-  );
+    </>
+  )
 }
 
 export default HomePageComponent;
