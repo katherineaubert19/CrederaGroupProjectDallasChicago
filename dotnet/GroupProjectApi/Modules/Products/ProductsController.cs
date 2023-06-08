@@ -37,7 +37,7 @@ namespace GroupProjectApi.Modules.Products
         }
 
         [HttpGet("{productId}")]
-        public ActionResult<ProductDto> GetProductById(int productId) {
+        public ActionResult<ProductDetail> GetProductById(int productId) {
             var prod = _productService.FindId(productId);
             return prod;
             //iterate through products

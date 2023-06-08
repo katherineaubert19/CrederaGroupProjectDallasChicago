@@ -23,7 +23,7 @@ namespace GroupProjectApi.Modules.Carts
                 {
                     ProductId = cartProduct.Product?.ProductId ?? 0,
                     Name = cartProduct.Product?.Name,
-                    Description = cartProduct.Product?.Description,
+                    // Description = cartProduct.Product?.Description,
                     Price = cartProduct.Product?.Price ?? 0m,
                     Quantity = cartProduct.Quantity
                 })
