@@ -1,9 +1,14 @@
-﻿using GroupProjectApi.Modules.Carts.Models;
-using GroupProjectApi.Modules.Common.Entities;
+﻿using GroupProjectApi.Modules.Common.Entities;
+using GroupProjectApi.Modules.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+//will map our json to dto 
+//copy cart mapper to become product maper, loop thru json and map item to our dto 
+//store in a list (iinnumerable)
+//don't need a mapper, we can do it in service, at the very start 
 
 namespace GroupProjectApi.Modules.Carts
 {

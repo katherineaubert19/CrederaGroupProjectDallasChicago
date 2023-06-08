@@ -2,7 +2,7 @@ using GroupProjectApi.Modules.Common.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace GroupProjectApi.Modules.Carts.Models
+namespace GroupProjectApi.Modules.Models
 {
     public class CartDto
     {
@@ -10,3 +10,4 @@ namespace GroupProjectApi.Modules.Carts.Models
         public IEnumerable<ProductDto> Products { get; set; }
     }
 }
+

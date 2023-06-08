@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GroupProjectApi.Modules.Common.Attributes;
-using GroupProjectApi.Modules.Carts.Models;
 using GroupProjectApi.Modules.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
