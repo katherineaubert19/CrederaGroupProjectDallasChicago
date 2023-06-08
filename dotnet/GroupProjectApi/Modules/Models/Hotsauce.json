@@ -5,35 +5,46 @@
         "Name": "Tabasco",
         "Description": "Super spice!",
         "Price": "4.99",
-        "Quantity": "94"
+        "Quantity": "94",
+        "Image": "binary",
+        "SpiceLevel": "3/5"
       },
       {
         "ProductId": "2",
         "Name": "Cholula",
         "Description": "Sweet habenero sauce",
         "Price": "3.49",
-        "Quantity": "40"
+        "Quantity": "40",
+        "Image": "binary",
+        "SpiceLevel": "2/5"
+      
       },
       {
         "ProductId": "3",
         "Name": "Habenero",
         "Description": "Crazy spicy!",
         "Price": "6.99",
-        "Quantity": "100"
+        "Quantity": "100",
+        "Image": "binary",
+        "SpiceLevel": "5/5"
       },
       {
         "ProductId": "4",
         "Name": "Louisiana Hot Sauce",
         "Description": "Made with aged hot peppers and vinegar",
         "Price": "4.99",
-        "Quantity": "32"
+        "Quantity": "32",
+        "Image": "binary",
+        "SpiceLevel": "1/5"
       },
       {
         "ProductId": "5",
         "Name": "Valentina",
         "Description": "Salsa picante",
         "Price": "7.89",
-        "Quantity": "70"
+        "Quantity": "70",
+        "Image": "binary",
+        "SpiceLevel": "4/5"
       }
     ]
 }
