@@ -14,6 +14,7 @@ namespace GroupProjectApi.Modules.Products
     {
         //Parsing JSON file 
         private readonly string _Hotsauce = "Modules/Models/Hotsauce.json";
+       
         //public class ReadAndParseJSONWithNewtonSoftJson
         //{
         //    //private readonly string _Hotsauce;
@@ -36,6 +37,16 @@ namespace GroupProjectApi.Modules.Products
         public class JsonWrapper
         {
             public List<ProductDto> Hotsauces {get; set;}
+        }
+        
+        //Return a product from the hot sauce file
+        public FindId(int productId) 
+        {
+            private List<ProductDto> list = new List<ProductDto>();
+
+            return list.Where(i => i.Equals(productId)).First();
+            }
+
         }
         
         // var listofprod = UseUserDefindObjectWithNewtonsoftJson(ReadAndParseJSONWithNewtonSoftJson( _Hotsauce));
