@@ -38,14 +38,16 @@ namespace GroupProjectApi.Modules.Products
 
         [HttpGet("{productId}")]
         public ActionResult<ProductDto> GetProductById(int productId) {
+            var prod = _productService.FindId(productId);
+            return prod;
             //iterate through products
             //if product id mataches the product return that product Dto 
-            var prod = _productService.GetProductById(productId);
-            if (product == null)
-           {
-               return this.NotFound();
-           }
-           return this.Ok(product);
+        //     var prod = _productService.GetProductById(productId);
+        //     if (product == null)
+        //    {
+        //        return this.NotFound();
+        //    }
+        //    return this.Ok(product);
 
         }
         //{

@@ -40,14 +40,15 @@ namespace GroupProjectApi.Modules.Products
         }
         
         //Return a product from the hot sauce file
-        public FindId(int productId) 
+        public ProductDto FindId(int productId) 
         {
-            private List<ProductDto> list = new List<ProductDto>();
+            List<ProductDto> list = UseUserDefindObjectWithNewtonsoftJson();
 
-            return list.Where(i => i.Equals(productId)).First();
-            }
-
+            return list.FirstOrDefault(i => i.ProductId == productId);
         }
+
+    }
+}
         
         // var listofprod = UseUserDefindObjectWithNewtonsoftJson(ReadAndParseJSONWithNewtonSoftJson( _Hotsauce));
 //listofprod is helpful for search, use it in a search function 
@@ -67,5 +68,3 @@ namespace GroupProjectApi.Modules.Products
         // {
         //     return _productRepo.GetProductById(productId)?.ToProductDto();
         // }
-    }
-}
