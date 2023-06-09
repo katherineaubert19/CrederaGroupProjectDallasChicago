@@ -9,20 +9,13 @@ using GroupProjectApi.Modules.Models;
 
 namespace GroupProjectApi.Modules.Products
 {
+
     [TransientService]
     public class ProductsService
     {
         //Parsing JSON file 
         private readonly string _Hotsauce = "Modules/Models/Hotsauce.json";
        
-        //public class ReadAndParseJSONWithNewtonSoftJson
-        //{
-        //    //private readonly string _Hotsauce;
-        //    public ReadAndParseJSONWithNewtonSoftJson(string jsonfilepath,)
-        //    {
-        //        _Hotsauce = jsonfilepath;
-        //    }
-        //}
 
         //Return a list of products from the hot sauce file
         public List<ProductDto> UseUserDefindObjectWithNewtonsoftJson()
@@ -34,20 +27,37 @@ namespace GroupProjectApi.Modules.Products
             return products ?? new List<ProductDto>();
         }
 
+        public List<ProductDetail> ParseJSONfordetails()
+        {
+            using StreamReader reader = new StreamReader(_Hotsauce);
+            string json = reader.ReadToEnd();
+
+            List<ProductDetail> products = JsonConvert.DeserializeObject<JsonWrapperDetails>(json)?.Hotsauces;
+            return products ?? new List<ProductDetail>();
+        }
+        
+
         public class JsonWrapper
         {
             public List<ProductDto> Hotsauces {get; set;}
         }
+
+        public class JsonWrapperDetails
+        {
+            public List<ProductDetail> Hotsauces {get; set;}
+        }
         
         //Return a product from the hot sauce file
-        public ProductDto FindId(int productId) 
+        public ProductDetail FindId(int productId) 
         {
-            List<ProductDto> list = UseUserDefindObjectWithNewtonsoftJson();
+            List<ProductDetail> list = ParseJSONfordetails();
 
             return list.FirstOrDefault(i => i.ProductId == productId);
         }
 
     }
+
+
 }
         
         // var listofprod = UseUserDefindObjectWithNewtonsoftJson(ReadAndParseJSONWithNewtonSoftJson( _Hotsauce));
