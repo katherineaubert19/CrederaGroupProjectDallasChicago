@@ -4,6 +4,15 @@ const HackerNewsStories = ({stories = []}) => {
   
   function displayPopUp(productId, name, sauceDescription, price, quantity) {
    
+
+      let data1;
+      fetch('https://localhost:5001/Products/'+productId)
+      .then(response => response.json())
+      .then(data => {
+        data1 = data;
+        console.log(data);
+      })
+
     var description = document.createElement('div');
     description.setAttribute("id", "toDisappear");
     var text1 = document.createElement('h1');
